@@ -28,7 +28,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      color: white;
+      color: red;
       padding: 20px 0 0 0;
       z-index: 1;
       position: relative;
@@ -44,7 +44,7 @@
     }
     .moneda-bar span {
       background: rgba(255,255,255,0.85);
-      color: #333;
+      color: #33;
       border-radius: 16px;
       padding: 6px 14px;
       margin: 0 2px;
@@ -140,7 +140,7 @@
     .cofre-open-btn {
       padding: 10px 26px;
       background-color: #3777ca;
-      color: white;
+      color: black;
       border: 0;
       border-radius: 8px;
       font-size: 1.1rem;
@@ -320,37 +320,75 @@
       cursor: pointer;
     }
     .perfil-fondo {
-  background: url('https://i.imgur.com/n9OyA2U.png') center/cover no-repeat, #15151a;
-  box-shadow: 0 0 25px #00ffe788;
-  color: #fff !important;
-  border: 2.5px solid #00ffe7;
-  position: relative;
-}
-.perfil-avatar {
-  margin-bottom: 8px;
-  display: flex;
-  justify-content: center;
-}
-.gamer-rango {
-  background: linear-gradient(90deg, #00ffe7 10%, #0ff 40%, #aaf 60%, #00ffe7 90%);
-  color: #fff;
-  padding: 3px 18px;
-  border-radius: 12px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  font-size: 1.13em;
-  filter: drop-shadow(0 0 5px #00ffe7) drop-shadow(0 0 8px #fff);
-  text-shadow: 0 0 7px #00ffe7, 0 0 15px #fff;
-  border: 2px solid #00ffe7;
-  margin-left: 4px;
-  box-shadow: 0 0 18px #00ffe788;
-}
+      background: url('https://i.imgur.com/n9OyA2U.png') center/cover no-repeat, #15151a;
+      box-shadow: 0 0 25px #00ffe788;
+      color: #fff !important;
+      border: 2.5px solid #00ffe7;
+      position: relative;
+    }
+    .perfil-avatar {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+    }
+    .gamer-rango {
+      background: linear-gradient(90deg, #00ffe7 10%, #0ff 40%, #aaf 60%, #00ffe7 90%);
+      color: #fff;
+      padding: 3px 18px;
+      border-radius: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      font-size: 1.13em;
+      filter: drop-shadow(0 0 5px #00ffe7) drop-shadow(0 0 8px #fff);
+      text-shadow: 0 0 7px #00ffe7, 0 0 15px #fff;
+      border: 2px solid #00ffe7;
+      margin-left: 4px;
+      box-shadow: 0 0 18px #00ffe788;
+    }
+    /* === INICIO ACTUALIZACIÓN === */
+    .cofre-fondo-plata {
+      background: url('https://i.imgur.com/9DvPrS8.png') center/cover no-repeat, #f7f7f7 !important;
+    }
+    .cofre-fondo-oro {
+      background: url('https://i.imgur.com/MVPWQeH.png') center/cover no-repeat, #fff8e1 !important;
+    }
+    .cofre-fondo-diamante {
+      background: url('https://i.imgur.com/WD9fqx0.png') center/cover no-repeat, #e0f7fa !important;
+    }
+    #inventoryModal .modal-content {
+      background: url('https://i.imgur.com/WyHOTjm.png') center/cover no-repeat, #fff !important;
+    }
+    .canjear-codigo-box {
+      margin: 18px 0 0 0;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    .canjear-codigo-box input {
+      padding: 7px 11px;
+      border-radius: 6px;
+      border: 1px solid #bbb;
+      font-size: 15px;
+    }
+    .canjear-codigo-box button {
+      background: #46b1e5;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 19px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .canjear-codigo-box button:hover {
+      background: #3689b0;
+    }
+    /* === FIN ACTUALIZACIÓN === */
   </style>
 </head>
 <body>
   <div id="recoleccionAnimada"></div>
   <div id="pantallaPrincipal">
-    <h1>🌱 ¡Bienvenido a XanFarm!</h1>
+    <h1> ¡Bienvenido a XanFarm!♡</h1>
     <div class="moneda-bar">
       <span>
         <img src="https://i.imgur.com/n9OyA2U.png" class="moneda-icon" alt="Moneda">
@@ -399,28 +437,28 @@
   </div>
 
   <!-- Perfil Modal Mejorado -->
-<div id="profileModal" class="modal">
-  <div class="modal-content perfil-fondo">
-    <span class="close-btn" id="cerrarPerfilBtn">×</span>
-    <h2 style="margin-bottom:8px;">🧑‍🌾 Tu Perfil</h2>
-    <div class="perfil-avatar">
-      <img src="https://i.imgur.com/n9OyA2U.png" alt="Avatar" style="width:90px; border-radius:50%; border:3px solid #00ffe7;box-shadow:0 0 18px #00ffe799;">
-    </div>
-    <div style="margin:12px 0 8px 0;">
-      <strong>Rango:</strong>
-      <span id="perfilRango" class="gamer-rango"></span>
-    </div>
-    <div>
-      <strong>Producción diaria:</strong> <span id="perfilProduccion"></span> monedas/día
-    </div>
-    <div>
-      <strong>Monedas:</strong> <span id="perfilCoins">0</span>
-    </div>
-    <div>
-      <strong>Llaves:</strong> <span id="perfilKeys">0</span>
+  <div id="profileModal" class="modal">
+    <div class="modal-content perfil-fondo">
+      <span class="close-btn" id="cerrarPerfilBtn">×</span>
+      <h2 style="margin-bottom:8px;">🧑‍🌾 Tu Perfil</h2>
+      <div class="perfil-avatar">
+        <img src="https://i.imgur.com/n9OyA2U.png" alt="Avatar" style="width:90px; border-radius:200%; border:3px solid #00ffe7;box-shadow:0 0 18px #00ffe799;">
+      </div>
+      <div style="margin:12px 0 8px 0;">
+        <strong>Rango:</strong>
+        <span id="perfilRango" class="gamer-rango"></span>
+      </div>
+      <div>
+        <strong>Producción diaria:</strong> <span id="perfilProduccion"></span> monedas/día
+      </div>
+      <div>
+        <strong>Monedas:</strong> <span id="perfilCoins">0</span>
+      </div>
+      <div>
+        <strong>Llaves:</strong> <span id="perfilKeys">0</span>
+      </div>
     </div>
   </div>
-</div>
 
   <!-- Inventario Modal -->
   <div id="inventoryModal" class="modal">
@@ -441,9 +479,7 @@
         <button id="tabSemanales">📅 Semanales</button>
         <button id="tabDesafio">💥 Desafíos</button>
       </div>
-      <div id="misionesContenedor">
-        <!-- Contenido dinámico según la pestaña seleccionada -->
-      </div>
+      <div id="misionesContenedor"></div>
     </div>
   </div>
 
@@ -453,6 +489,11 @@
       <span class="close-btn" id="cerrarTiendaNuevaBtn">×</span>
       <h2>🏪 Tienda</h2>
       <div id="paquetesTienda"></div>
+      <!-- CAMPO DE CANJE DE CÓDIGO -->
+      <div class="canjear-codigo-box">
+        <input id="codigoInput" type="text" placeholder="Ingresa tu código de paquete">
+        <button onclick="canjearCodigo()">Canjear</button>
+      </div>
       <hr>
       <div>
         <b>Conversión:</b> 100 monedas = 10 llaves
@@ -495,7 +536,7 @@
     <div class="modal-content">
       <span class="close-btn" id="cerrarRetirosBtn">×</span>
       <h2>Retiros</h2>
-      <div>Próximamente podrás retirar recompensas vinculando tu billetera.</div>
+      <div>Contacta al Soporte en el Bot Pay.</div>
     </div>
   </div>
   <script>
@@ -631,6 +672,14 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   function actualizarCofreUI(tipo) {
+    // === FONDO COFRE PERSONALIZADO ===
+    const modalCofre = document.querySelector("#cofreModal .modal-content");
+    modalCofre.classList.remove('cofre-fondo-plata','cofre-fondo-oro','cofre-fondo-diamante');
+    if(tipo === 'plata') modalCofre.classList.add('cofre-fondo-plata');
+    else if(tipo === 'oro') modalCofre.classList.add('cofre-fondo-oro');
+    else if(tipo === 'diamante') modalCofre.classList.add('cofre-fondo-diamante');
+    // === FIN — FONDO COFRE PERSONALIZADO ===
+
     const cofre = cofres[tipo];
     document.getElementById("tituloCofre").innerText = `🎁 Cofre ${cofre.nombre}`;
     document.getElementById("imgCofre").src = cofre.img;
@@ -910,12 +959,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     document.getElementById("paquetesTienda").innerHTML = html;
   }
+  // --- ACTUALIZACIÓN: Comprar abre Telegram ---
   window.comprarPaqueteTienda = function(i) {
-    alert("¡Compra simulada del paquete " + TIENDA_PAQUETES[i].nombre + " por $" + TIENDA_PAQUETES[i].precio + "!\n(Implementa pasarela de pagos real para producción)");
-    keys += TIENDA_PAQUETES[i].llaves;
-    actualizarLlaves();
-    document.getElementById("newShopModal").style.display = "none";
+    const botUsername = "XanFarmPaybot";
+    window.open(`https://t.me/${botUsername}?start=paquete${i+1}`, "_blank");
   };
+  // --------------------------------------------
 
   document.getElementById("convertirMonedasBtn").onclick = () => {
     if (coins < 100) { alert("No tienes suficientes monedas."); return; }
@@ -956,6 +1005,81 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("politicasModal").style.display = "flex";
   };
   document.getElementById("cerrarPoliticasBtn").onclick = () => document.getElementById("politicasModal").style.display = "none";
+
+  // ========== SISTEMA DE CANJE DE CÓDIGOS ==========
+  const codigosValidos = {
+  // Paquete 1: Inicio Granjero
+  "XAN-1A1B-PAQ1": { paquete: 0, descripcion: "Inicio Granjero: 100 llaves + 1 cultivo épico" },
+  "XAN-2A2B-PAQ1": { paquete: 0, descripcion: "Inicio Granjero: 100 llaves + 1 cultivo épico" },
+  "XAN-3A3B-PAQ1": { paquete: 0, descripcion: "Inicio Granjero: 100 llaves + 1 cultivo épico" },
+  "XAN-4A4B-PAQ1": { paquete: 0, descripcion: "Inicio Granjero: 100 llaves + 1 cultivo épico" },
+  "XAN-5A5B-PAQ1": { paquete: 0, descripcion: "Inicio Granjero: 100 llaves + 1 cultivo épico" },
+  "XAN-6A6B-PAQ1": { paquete: 0, descripcion: "Inicio Granjero: 100 llaves + 1 cultivo épico" },
+
+  // Paquete 2: Inicio Pro
+  "XAN-1C1D-PAQ2": { paquete: 1, descripcion: "Inicio Pro: 250 llaves + 3 raros" },
+  "XAN-2C2D-PAQ2": { paquete: 1, descripcion: "Inicio Pro: 250 llaves + 3 raros" },
+  "XAN-3C3D-PAQ2": { paquete: 1, descripcion: "Inicio Pro: 250 llaves + 3 raros" },
+  "XAN-4C4D-PAQ2": { paquete: 1, descripcion: "Inicio Pro: 250 llaves + 3 raros" },
+  "XAN-5C5D-PAQ2": { paquete: 1, descripcion: "Inicio Pro: 250 llaves + 3 raros" },
+  "XAN-6C6D-PAQ2": { paquete: 1, descripcion: "Inicio Pro: 250 llaves + 3 raros" },
+
+  // Paquete 3: Granjero Avanzado
+  "XAN-1E1F-PAQ3": { paquete: 2, descripcion: "Granjero Avanzado: 500 llaves + 2 épicos y 2 raros" },
+  "XAN-2E2F-PAQ3": { paquete: 2, descripcion: "Granjero Avanzado: 500 llaves + 2 épicos y 2 raros" },
+  "XAN-3E3F-PAQ3": { paquete: 2, descripcion: "Granjero Avanzado: 500 llaves + 2 épicos y 2 raros" },
+  "XAN-4E4F-PAQ3": { paquete: 2, descripcion: "Granjero Avanzado: 500 llaves + 2 épicos y 2 raros" },
+  "XAN-5E5F-PAQ3": { paquete: 2, descripcion: "Granjero Avanzado: 500 llaves + 2 épicos y 2 raros" },
+  "XAN-6E6F-PAQ3": { paquete: 2, descripcion: "Granjero Avanzado: 500 llaves + 2 épicos y 2 raros" },
+
+  // Paquete 4: Extraordinario
+  "XAN-1G1H-PAQ4": { paquete: 3, descripcion: "Extraordinario: 700 llaves + 1 legendaria aleatoria" },
+  "XAN-2G2H-PAQ4": { paquete: 3, descripcion: "Extraordinario: 700 llaves + 1 legendaria aleatoria" },
+  "XAN-3G3H-PAQ4": { paquete: 3, descripcion: "Extraordinario: 700 llaves + 1 legendaria aleatoria" },
+  "XAN-4G4H-PAQ4": { paquete: 3, descripcion: "Extraordinario: 700 llaves + 1 legendaria aleatoria" },
+  "XAN-5G5H-PAQ4": { paquete: 3, descripcion: "Extraordinario: 700 llaves + 1 legendaria aleatoria" },
+  "XAN-6G6H-PAQ4": { paquete: 3, descripcion: "Extraordinario: 700 llaves + 1 legendaria aleatoria" },
+
+  // Paquete 5: Mega Épico
+  "XAN-1I1J-PAQ5": { paquete: 4, descripcion: "Mega Épico: 1000 llaves + 2 épicos y 1 legendario aleatorio" },
+  "XAN-2I2J-PAQ5": { paquete: 4, descripcion: "Mega Épico: 1000 llaves + 2 épicos y 1 legendario aleatorio" },
+  "XAN-3I3J-PAQ5": { paquete: 4, descripcion: "Mega Épico: 1000 llaves + 2 épicos y 1 legendario aleatorio" },
+  "XAN-4I4J-PAQ5": { paquete: 4, descripcion: "Mega Épico: 1000 llaves + 2 épicos y 1 legendario aleatorio" },
+  "XAN-5I5J-PAQ5": { paquete: 4, descripcion: "Mega Épico: 1000 llaves + 2 épicos y 1 legendario aleatorio" },
+  "XAN-6I6J-PAQ5": { paquete: 4, descripcion: "Mega Épico: 1000 llaves + 2 épicos y 1 legendario aleatorio" },
+
+  // Paquete 6: Granjero Legendario
+  "XAN-1K1L-PAQ6": { paquete: 5, descripcion: "Granjero Legendario: 2000 llaves + Rango avanzado, beneficios VIP" },
+  "XAN-2K2L-PAQ6": { paquete: 5, descripcion: "Granjero Legendario: 2000 llaves + Rango avanzado, beneficios VIP" },
+  "XAN-3K3L-PAQ6": { paquete: 5, descripcion: "Granjero Legendario: 2000 llaves + Rango avanzado, beneficios VIP" },
+  "XAN-4K4L-PAQ6": { paquete: 5, descripcion: "Granjero Legendario: 2000 llaves + Rango avanzado, beneficios VIP" },
+  "XAN-5K5L-PAQ6": { paquete: 5, descripcion: "Granjero Legendario: 2000 llaves + Rango avanzado, beneficios VIP" },
+  "XAN-6K6L-PAQ6": { paquete: 5, descripcion: "Granjero Legendario: 2000 llaves + Rango avanzado, beneficios VIP" }
+  };
+  window.canjearCodigo = function() {
+    const input = document.getElementById("codigoInput").value.trim();
+    if (!input) { alert("Ingresa un código."); return; }
+    const usados = JSON.parse(localStorage.getItem("xanfarm-codigosUsados") || "[]");
+    if (usados.includes(input)) {
+      alert("Ya usaste este código.");
+      return;
+    }
+    if (codigosValidos[input]) {
+      const paquete = codigosValidos[input].paquete;
+      alert("¡Código válido! Has recibido: " + codigosValidos[input].descripcion);
+      // Entrega según el paquete
+      const premio = TIENDA_PAQUETES[paquete];
+      keys += premio.llaves;
+      // Puedes agregar lógica para los cultivos de bonus aquí
+      actualizarLlaves();
+      usados.push(input);
+      localStorage.setItem("xanfarm-codigosUsados", JSON.stringify(usados));
+      document.getElementById("codigoInput").value = "";
+    } else {
+      alert("Código inválido.");
+    }
+  };
+
 });
 </script>
 </body>
