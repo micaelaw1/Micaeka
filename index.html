@@ -322,4 +322,291 @@
   </style>
 </head>
 <body>
-  <!-- CONTINÚA EN LA SIGUIENTE RESPUESTA... -->
+    <!-- RECOLECCIÓN ANIMADA -->
+  <div id="recoleccionAnimada"></div>
+
+  <!-- MODAL PERFIL -->
+  <div class="modal" id="modalPerfil">
+    <div class="modal-content" style="background: url('https://i.imgur.com/W3U6oaj.png') center/cover no-repeat;">
+      <span class="close-btn" onclick="cerrarModal('modalPerfil')">&times;</span>
+      <h2 style="margin-bottom: 4px;">Perfil de Granjero</h2>
+      <div style="font-size: 1.3em; margin-bottom:10px;">
+        <span id="nickname">GranjeroX</span>
+      </div>
+      <div>
+        <span style="font-size:1.1em;">Rango:</span>
+        <span id="rangoPerfil" style="padding:6px 18px; border-radius:9px; font-weight:bold; font-size:1.15em;">
+          <span style="color:#FFD700; text-shadow: 0 0 5px #fa0,0 0 10px #fff;">ÉPICO</span>
+        </span>
+      </div>
+      <div style="margin:14px 0 10px 0;">
+        <img src="https://i.imgur.com/smXUo9z.png" alt="Avatar" style="width:78px; border-radius:50%; border:3px solid #FFD700;">
+      </div>
+      <div>
+        <span>Llaves: <b id="llavesPerfil">0</b></span>
+        <span style="margin-left:10px;">Monedas: <b id="monedasPerfil">0</b></span>
+      </div>
+      <div id="beneficiosVIP" style="margin:14px 0 10px 0; color:#f0e;">
+        <span style="font-size:1.1em;">Beneficios VIP activos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL INVENTARIO -->
+  <div class="modal" id="modalInventario">
+    <div class="modal-content" style="background: url('https://i.imgur.com/6K0O1pO.png') center/cover no-repeat;">
+      <span class="close-btn" onclick="cerrarModal('modalInventario')">&times;</span>
+      <h2>Inventario</h2>
+      <div id="listaInventario"></div>
+    </div>
+  </div>
+
+  <!-- MODAL COFRES -->
+  <div class="modal" id="modalCofres">
+    <div class="modal-content">
+      <span class="close-btn" onclick="cerrarModal('modalCofres')">&times;</span>
+      <h2>Abrir Cofres</h2>
+      <div class="tab-selector">
+        <button onclick="seleccionarCofre('bronce')" id="tabBronce" class="active">Bronce</button>
+        <button onclick="seleccionarCofre('plata')" id="tabPlata">Plata</button>
+        <button onclick="seleccionarCofre('oro')" id="tabOro">Oro</button>
+      </div>
+      <div id="cofreVisual"></div>
+      <div id="resultadoCofre"></div>
+    </div>
+  </div>
+
+  <!-- MODAL OPCIONES -->
+  <div class="modal" id="modalOpciones">
+    <div class="modal-content">
+      <span class="close-btn" onclick="cerrarModal('modalOpciones')">&times;</span>
+      <h2>Opciones</h2>
+      <button onclick="borrarProgreso()" style="background:#f44; color:#fff; border:none; padding:10px 14px; border-radius:7px; margin-bottom:8px;">Borrar Progreso</button>
+      <button onclick="ajustarBrillo()">Ajustar Brillo</button>
+      <button onclick="toggleMusica()">Desactivar/Activar Música</button>
+      <button onclick="conectarBilletera()">Conectar Billetera</button>
+      <div style="margin-top:12px;">
+        <a href="#" onclick="abrirPoliticas(); return false;" style="color:#3777ca; text-decoration:underline;">Políticas de Privacidad</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL POLÍTICAS -->
+  <div class="modal" id="modalPoliticas">
+    <div class="modal-content">
+      <span class="close-btn" onclick="cerrarModal('modalPoliticas')">&times;</span>
+      <h2>Políticas de Privacidad</h2>
+      <div style="text-align:left; font-size:1em;">
+        XanFarm respeta tu privacidad. No compartimos tus datos personales con terceros. Los datos de juego se almacenan solo localmente y puedes eliminarlos en cualquier momento desde las Opciones. Para más información, contacta al soporte oficial.
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL TIENDA -->
+  <div class="modal" id="modalTienda">
+    <div class="modal-content">
+      <span class="close-btn" onclick="cerrarModal('modalTienda')">&times;</span>
+      <h2>Tienda de Llaves</h2>
+      <div id="paquetesTienda"></div>
+      <hr>
+      <div>
+        <b>Conversión:</b> 100 monedas = 10 llaves
+        <button onclick="convertirMonedas()">Convertir</button>
+      </div>
+      <div style="margin:12px 0 0 0;">
+        <button onclick="abrirRetiros()" style="background:#ffd600; color:#222; border:none; border-radius:7px; padding:9px 20px;">Retiros</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL RETIROS -->
+  <div class="modal" id="modalRetiros">
+    <div class="modal-content">
+      <span class="close-btn" onclick="cerrarModal('modalRetiros')">&times;</span>
+      <h2>Retiros</h2>
+      <div>Próximamente podrás retirar recompensas vinculando tu billetera.</div>
+    </div>
+  </div>
+
+  <div id="pantallaPrincipal">
+    <div class="moneda-bar">
+      <span><img src="https://i.imgur.com/kpASR9O.png" class="moneda-icon"> <span id="monedas">0</span> monedas</span>
+      <span><img src="https://i.imgur.com/J9fD6Gh.png" class="moneda-icon"> <span id="llaves">0</span> llaves</span>
+    </div>
+
+    <div id="cultivoActual" style="margin:16px 0 16px 0; width:100%; max-width:380px;">
+      <div class="plant">
+        <img src="https://i.imgur.com/codigo.png" id="imgCultivo">
+        <div class="plant-info">
+          <b id="nombreCultivo">Piña dorada</b>
+          <div class="production">+<span id="produccionCultivo">10</span> monedas / 30s</div>
+        </div>
+      </div>
+      <div id="progresoProduccion">
+        <div id="barraProduccion"></div>
+      </div>
+      <div id="contadorProduccion">00:00</div>
+      <button id="btnRecolectar" onclick="recolectar()">Recolectar</button>
+    </div>
+  </div>
+
+  <div class="menu">
+    <button onclick="abrirModal('modalPerfil')">Perfil</button>
+    <button onclick="abrirModal('modalInventario')">Inventario</button>
+    <button onclick="abrirModal('modalCofres')">Cofres</button>
+    <button onclick="abrirModal('modalTienda')">Tienda</button>
+    <button onclick="abrirModal('modalOpciones')">Opciones</button>
+  </div>
+
+  <script>
+    // Variables principales del juego
+    let monedas = 250, llaves = 25, cultivo = 0, rango = "ÉPICO", vip = true;
+    let cultivos = [
+      {nombre: "Piña dorada", img: "https://i.imgur.com/codigo.png", produccion: 10, tiempo: 30, rareza:"legendario"},
+      {nombre: "Uva eléctrica", img: "https://i.imgur.com/codigo.png", produccion: 7, tiempo: 28, rareza:"épico"},
+      {nombre: "Cereza de lava", img: "https://i.imgur.com/codigo.png", produccion: 7, tiempo: 26, rareza:"épico"},
+      {nombre: "Flor de cacao", img: "https://i.imgur.com/codigo.png", produccion: 6, tiempo: 22, rareza:"raro"},
+      {nombre: "Melón ámbar", img: "https://i.imgur.com/codigo.png", produccion: 6, tiempo: 18, rareza:"raro"},
+      {nombre: "Frijol lunar", img: "https://i.imgur.com/codigo.png", produccion: 5, tiempo: 16, rareza:"raro"},
+      {nombre: "Zanahoria cristal", img: "https://i.imgur.com/codigo.png", produccion: 4, tiempo: 14, rareza:"común"},
+      {nombre: "Maíz dulce", img: "https://i.imgur.com/codigo.png", produccion: 3, tiempo: 12, rareza:"común"},
+      {nombre: "Tomate solar", img: "https://i.imgur.com/codigo.png", produccion: 3, tiempo: 8, rareza:"común"},
+      {nombre: "Trigo solar", img: "https://i.imgur.com/codigo.png", produccion: 2, tiempo: 6, rareza:"común"}
+    ];
+    let inventario = [0,1,2,3,4,5,6,7,8,9];
+    let tiempoRestante = cultivos[cultivo].tiempo, produciendo = false, intervalo;
+
+    function actualizarUI() {
+      document.getElementById('monedas').textContent = monedas;
+      document.getElementById('llaves').textContent = llaves;
+      document.getElementById('imgCultivo').src = cultivos[cultivo].img;
+      document.getElementById('nombreCultivo').textContent = cultivos[cultivo].nombre;
+      document.getElementById('produccionCultivo').textContent = cultivos[cultivo].produccion;
+      document.getElementById('barraProduccion').style.width = ((cultivos[cultivo].tiempo-tiempoRestante)/cultivos[cultivo].tiempo*100)+"%";
+      document.getElementById('contadorProduccion').textContent = segsToMin(tiempoRestante);
+      document.getElementById('llavesPerfil').textContent = llaves;
+      document.getElementById('monedasPerfil').textContent = monedas;
+      document.getElementById('rangoPerfil').innerHTML = `<span style="color:#FFD700; text-shadow:0 0 5px #fa0,0 0 10px #fff">${rango}</span>`;
+      document.getElementById('beneficiosVIP').style.display = vip ? "block" : "none";
+    }
+    function segsToMin(segs){ let m=Math.floor(segs/60),s=segs%60; return (m<10?"0":"")+m+":"+(s<10?"0":"")+s;}
+    function cicloProduccion() {
+      intervalo = setInterval(()=>{
+        if(tiempoRestante>0){ tiempoRestante--; actualizarUI(); }
+        if(tiempoRestante<=0){ clearInterval(intervalo);}
+      },1000);
+    }
+    function recolectar(){
+      if(tiempoRestante>0) return;
+      monedas += cultivos[cultivo].produccion;
+      document.getElementById('recoleccionAnimada').textContent = "+"+cultivos[cultivo].produccion+" monedas!";
+      document.getElementById('recoleccionAnimada').style.display = "block";
+      setTimeout(()=>{document.getElementById('recoleccionAnimada').style.display="none";},1100);
+      tiempoRestante = cultivos[cultivo].tiempo;
+      actualizarUI();
+      cicloProduccion();
+    }
+    function abrirModal(id){ document.getElementById(id).style.display="flex"; if(id==="modalInventario") cargarInventario(); if(id==="modalTienda") cargarTienda(); }
+    function cerrarModal(id){ document.getElementById(id).style.display="none"; }
+    function cargarInventario(){
+      let html="";
+      inventario.forEach(i=>{
+        html+=`<div class="plant"><img src="${cultivos[i].img}"><div class="plant-info"><b>${cultivos[i].nombre}</b><br><span style="color:#888">${cultivos[i].rareza}</span></div></div>`;
+      });
+      document.getElementById('listaInventario').innerHTML=html;
+    }
+    // Cofres
+    let cofres = {
+      bronce: {img:"https://i.imgur.com/12wW8Jf.png",llaves:1,prob:{comun:0.7, raro:0.25, epico:0.05, legendario:0}},
+      plata:  {img:"https://i.imgur.com/fkRjv1x.png",llaves:3,prob:{comun:0.55, raro:0.3, epico:0.1, legendario:0.025}},
+      oro:    {img:"https://i.imgur.com/9cR9k8D.png",llaves:7,prob:{comun:0.3, raro:0.32, epico:0.25, legendario:0.13}}
+    };
+    // Probabilidades ajustadas: Plata = 1 épico cada 10, 1 legendario cada 40 (épico 10%, legendario 2.5%)
+    let cofreActual="bronce";
+    function seleccionarCofre(tipo){
+      cofreActual=tipo;
+      document.getElementById('tabBronce').classList.remove('active');
+      document.getElementById('tabPlata').classList.remove('active');
+      document.getElementById('tabOro').classList.remove('active');
+      document.getElementById('tab'+tipo.charAt(0).toUpperCase()+tipo.slice(1)).classList.add('active');
+      mostrarCofre();
+    }
+    function mostrarCofre(){
+      let c=cofres[cofreActual];
+      document.getElementById('cofreVisual').innerHTML = `
+        <img src="${c.img}" class="cofre-img" id="imgCofre" onclick="abrirCofre()">
+        <div class="cofre-info">${cofreActual.charAt(0).toUpperCase()+cofreActual.slice(1)}<br>
+        Llaves necesarias: <b>${c.llaves}</b></div>
+        <button class="cofre-open-btn" onclick="abrirCofre()" ${llaves<c.llaves?'disabled':''}>Abrir Cofre</button>
+        <div class="cofre-keys">Tienes: <b>${llaves}</b> llaves</div>
+      `;
+      document.getElementById('resultadoCofre').innerHTML = "";
+    }
+    function abrirCofre(){
+      let c=cofres[cofreActual];
+      if(llaves<c.llaves) return;
+      llaves -= c.llaves;
+      // Sorteo de cultivo según rareza
+      let r = Math.random(), sum=0, rareza="";
+      for(let k in c.prob){ sum+=c.prob[k]; if(r<=sum){rareza=k;break;} }
+      let posibles = cultivos.filter(x=>x.rareza===rareza);
+      let premio = posibles[Math.floor(Math.random()*posibles.length)];
+      document.getElementById('imgCofre').classList.add('abierto');
+      setTimeout(()=>{document.getElementById('imgCofre').classList.remove('abierto');},700);
+      document.getElementById('resultadoCofre').innerHTML = `
+        <div>¡Has obtenido: <b>${premio.nombre}</b> <span style="color:#FFD700;text-shadow:0 0 7px #ff0">${rareza.toUpperCase()}</span>!</div>
+        <img src="${premio.img}" style="width:62px; margin:6px;">
+      `;
+      if(!inventario.includes(cultivos.indexOf(premio))) inventario.push(cultivos.indexOf(premio));
+      actualizarUI();
+      mostrarCofre();
+    }
+    // Tienda
+    let paquetes = [
+      {nombre:"Inicio Granjero",llaves:100,bonus:"1 cultivo morado aleatorio",precio:2.99},
+      {nombre:"Inicio Granjero Pro",llaves:250,bonus:"3 cultivos raros aleatorios",precio:5},
+      {nombre:"Granjero Avanzado",llaves:500,bonus:"2 morados aleatorios y 2 raros",precio:10},
+      {nombre:"Extraordinario",llaves:700,bonus:"1 legendaria aleatoria",precio:20},
+      {nombre:"Mega Épico",llaves:1000,bonus:"2 morados y 1 legendario aleatorio",precio:40},
+      {nombre:"Granjero Legendario",llaves:2000,bonus:"Rango avanzado y beneficios VIP",precio:100}
+    ];
+    function cargarTienda(){
+      let html = "";
+      paquetes.forEach((p,i)=>{
+        html += `<div class="plant" style="flex-direction:column;align-items:flex-start;">
+        <b style="font-size:1.1em;">${p.nombre}</b><br>
+        <span>Llaves: <b style="color:#3777ca">${p.llaves}</b></span><br>
+        <span>Incluye: <span style="color:#ab47bc">${p.bonus}</span></span><br>
+        <span style="color:#222">Precio: <b style="font-size:1.1em;">$${p.precio}</b></span>
+        <button style="margin:8px 0 0 0;background:#FFD600;" onclick="comprarPaquete(${i})">Comprar</button>
+        </div>`;
+      });
+      document.getElementById('paquetesTienda').innerHTML = html;
+    }
+    function comprarPaquete(i){
+      alert("¡Compra simulada del paquete "+paquetes[i].nombre+" por $"+paquetes[i].precio+"!\n(Implementa pasarela de pagos real para producción)");
+      llaves += paquetes[i].llaves;
+      if(i===5){ rango="AVANZADO"; vip=true; }
+      actualizarUI();
+      cerrarModal('modalTienda');
+    }
+    function convertirMonedas(){
+      if(monedas<100){alert("No tienes suficientes monedas.");return;}
+      monedas -= 100; llaves += 10; actualizarUI(); alert("¡Has convertido 100 monedas en 10 llaves!");
+    }
+    function abrirRetiros(){ abrirModal('modalRetiros'); }
+    // Opciones
+    function borrarProgreso(){
+      if(confirm("¿Seguro que deseas borrar todo tu progreso?")){ monedas=250;llaves=25;cultivo=0;rango="ÉPICO";vip=false;inventario=[0,1,2,3,4,5,6,7,8,9]; actualizarUI(); alert("¡Progreso borrado!"); }
+    }
+    function ajustarBrillo(){ document.body.style.background="#222"; setTimeout(()=>{document.body.style.background="#fefae0";},1500);}
+    let musicaOn=true;
+    function toggleMusica(){ musicaOn=!musicaOn; alert(musicaOn?"Música activada.":"Música desactivada."); }
+    function conectarBilletera(){ alert("Función de billetera próximamente."); }
+    function abrirPoliticas(){ cerrarModal('modalOpciones'); abrirModal('modalPoliticas'); }
+    seleccionarCofre('bronce');
+    actualizarUI();
+    cicloProduccion();
+  </script>
+</body>
+</html>
